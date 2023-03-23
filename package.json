@@ -3,7 +3,7 @@
   "displayName": "MetaP GUI Editor",
   "description": "MetaP Graphical User Interface Editor",
   "version": "0.0.1",
-  "publisher": "MetaP",
+  "publisher": "metap",
   "engines": {
     "vscode": "^1.76.0"
   },
@@ -15,8 +15,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "metap-gui-editor.open",
-        "title": "MetaP: Open GUI Editor"
+        "command": "metap-gui-editor.create-new",
+        "title": "MetaP: Create New GUI Description"
+      },
+      {
+        "command": "metap-gui-editor.test",
+        "title": "MetaP: Test GUI Editor"
       }
     ]
   },
