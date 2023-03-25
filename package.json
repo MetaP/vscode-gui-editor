@@ -4,6 +4,11 @@
   "description": "MetaP Graphical User Interface Editor",
   "version": "0.0.1",
   "publisher": "metap",
+  "author": {
+    "name": "Paul Gordts",
+    "email": "paul.gordts@live.com",
+    "url": "https://github.com/metap"
+  },
   "engines": {
     "vscode": "^1.76.0"
   },

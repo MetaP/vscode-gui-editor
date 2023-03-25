@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+$metap-color-text: #01410fff;
+$metap-color-background: white;
+$metap-color-border: rgb(3, 150, 3);
+$metap-border-width: 1px;
+
+body {
+    color: $metap-color-text;
+    background-color: $metap-color-background;
+    main {
+        /* Top & bottom border */
+        border: solid $metap-color-border; 
+        border-width: $metap-border-width 0; 
+    }
+}
+
