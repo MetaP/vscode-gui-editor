@@ -30,6 +30,8 @@
     ]
   },
   "scripts": {
+    "start:gui": "cd gui && npm run start",
+    "build:gui": "cd gui && npm run build",
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
