@@ -7,12 +7,12 @@ import { getUri } from "../utilities/getUri";
  * @param gdlFile A GDL file
  * @returns The contents of an HTML page representing the specified GDL file being edited.
  */
-export function getHtmlOfGdlFile(gdlFile: GdlFile, webview: Webview, extensionUri: Uri): string {
-    const stylesUri = getUri(webview, extensionUri, ["gui", "build", "styles.css"]);
+export async function getHtmlOfGdlFile(gdlFile: GdlFile, webview: Webview): Promise<string> {
+    const stylesUri = getUri(webview, ["gui", "build", "styles.css"]);
 
-    const runtimeUri = getUri(webview, extensionUri, ["gui", "build", "runtime.js"]);
-    const polyfillsUri = getUri(webview, extensionUri, ["gui", "build", "polyfills.js"]);
-    const scriptUri = getUri(webview, extensionUri, ["gui", "build", "main.js"]);
+    const runtimeUri = getUri(webview, ["gui", "build", "runtime.js"]);
+    const polyfillsUri = getUri(webview, ["gui", "build", "polyfills.js"]);
+    const scriptUri = getUri(webview, ["gui", "build", "main.js"]);
 
     return /*html*/ `
         <!DOCTYPE html>
@@ -24,6 +24,8 @@ export function getHtmlOfGdlFile(gdlFile: GdlFile, webview: Webview, extensionUr
                 <title>${gdlFile.title}</title>
             </head>
             <body>
+                <p>${webview.cspSource}</p>
+                <p><strong>${await gdlFile.text}</strong><p>
                 <metap-root></metap-root>
                 <script type="module" src="${runtimeUri}"></script>
                 <script type="module" src="${polyfillsUri}"></script>

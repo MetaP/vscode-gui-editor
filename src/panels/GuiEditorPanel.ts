@@ -1,20 +1,27 @@
 import { Disposable, ExtensionContext, Uri, ViewColumn, WebviewPanel, window } from "vscode";
 import { GdlFile } from "../model/GdlFile";
+import { extensionUri } from "../utilities/getUri";
 import { getHtmlOfGdlFile } from "./getGdlFileHtml";
 
-/**
- * Identifies the type of Webview panel used.
- */
-const EDITOR_VIEW_TYPE = 'gui-editor';
-
 export class GuiEditorPanel {
+
+    /**
+     * Identiefies this view type
+     */
+    public static readonly viewType = 'MetaP.MetaP.GaphicalGuiEditor';
 
     private static i = 0;
 
     private extensionContext: ExtensionContext;
 
     public static createNew(extensionContext: ExtensionContext) {
-        const gdlFile = new GdlFile(`GDL ${++this.i}`);
+        const uri = Uri.from( { scheme: 'file' });
+        const gdlFile = new GdlFile(uri);
+        const guiEditorPanel = new GuiEditorPanel(extensionContext, gdlFile);
+    }
+
+    public static open(extensionContext: ExtensionContext, uri:Uri) {
+        const gdlFile = new GdlFile(uri);
         const guiEditorPanel = new GuiEditorPanel(extensionContext, gdlFile);
     }
 
@@ -55,10 +62,9 @@ export class GuiEditorPanel {
      * @returns A WebViewPanel representing the specified GDL file.
      */
     private createPanel(gdlFile: GdlFile): WebviewPanel {
-        const extensionUri = this.extensionContext.extensionUri;
 
         const panel = window.createWebviewPanel(
-            EDITOR_VIEW_TYPE, // Idetntiefies the type of the panel.
+            GuiEditorPanel.viewType, // Identifies the type of the panel.
             gdlFile.title, // Title of the panel displayed to the user.
             ViewColumn.One, // Editor column to show panel in. 
 
@@ -72,7 +78,9 @@ export class GuiEditorPanel {
             );
 
         const webview = panel.webview;
-        webview.html = getHtmlOfGdlFile(gdlFile, webview, extensionUri);
+
+        getHtmlOfGdlFile(gdlFile, webview).then(html => 
+            webview.html = html);
 
         return panel;
     }

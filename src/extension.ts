@@ -1,29 +1,31 @@
-import * as vscode from 'vscode';
-import { GuiEditorPanel } from './panels/GuiEditorPanel';
+// import * as vscode from 'vscode';
+import { commands, ExtensionContext, Uri, window } from 'vscode';
+import { GraphicalGuiEditorProvider } from './extension/GraphicalGuiEditorProvider';
+import { setExtensionUri } from './utilities/getUri';
 
 // This method is called when your extension is activated
-export function activate(extensionContext: vscode.ExtensionContext) {
+export function activate(context: ExtensionContext) {
 
-	console.log('** metap-gui-editor activated **');
+	console.log('** MetaP.GuiEditor activated **');
+
+	setExtensionUri(context.extensionUri);
+
+	// // Open a graphical editor window.
+	// const createCommand = commands.registerCommand('MetaP.GuiEditor.CreateNew', () => {
+	// 	GuiEditorPanel.createNew(context);
+	// });
+	// context.subscriptions.push(createCommand);
 
 	// Display a test information message.
-	const testCommand = vscode.commands.registerCommand('metap-gui-editor.test', () => {
-		vscode.window.showInformationMessage('The MetaP GUI Editor responded!');
+	const testCommand = commands.registerCommand('MetaP.GuiEditor.Test', () => {
+		window.showInformationMessage('The MetaP GUI Editor responded!');
 	});
+	context.subscriptions.push(testCommand);
 
-	extensionContext.subscriptions.push(testCommand);
-
-	const title = "GUI Editor";
-
-	// Open a graphical editor window.
-	const openCommand = vscode.commands.registerCommand('metap-gui-editor.create-new', () => {
-		GuiEditorPanel.createNew(extensionContext);
-	});
-
-	extensionContext.subscriptions.push(openCommand);
+	context.subscriptions.push(GraphicalGuiEditorProvider.register(context));
 }
 
 // This method is called when your extension is deactivated
 export function deactivate() {
-	console.log('** metap-gui-editor deactivated **');
+	console.log('** MetaP.GuiEditor deactivated **');
 }

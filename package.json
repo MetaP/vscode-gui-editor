@@ -20,12 +20,24 @@
   "contributes": {
     "commands": [
       {
-        "command": "metap-gui-editor.create-new",
+        "command": "MetaP.GuiEditor.CreateNew",
         "title": "MetaP: Create New GUI Description"
       },
       {
-        "command": "metap-gui-editor.test",
+        "command": "MetaP.GuiEditor.Test",
         "title": "MetaP: Test GUI Editor"
+      }
+    ],
+    "customEditors": [
+      {
+        "viewType": "MetaP.GaphicalGuiEditor",
+        "displayName": "MetaP Graphical GUI Editor",
+        "selector": [
+          {
+            "filenamePattern": "*.gdl"
+          }
+        ],
+        "priority": "default"
       }
     ]
   },
