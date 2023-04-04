@@ -19,7 +19,10 @@ export class GraphicalGuiEditor {
             // Restrict the webview to only load resources from the `out` and `webview-ui/build` directories
             localResourceRoots: [vscode.Uri.joinPath(extensionUri, "out"), vscode.Uri.joinPath(extensionUri, "gui/build")],
         };
-        
+
+        // Add a message handler.
+        this.webview.onDidReceiveMessage(message => this.handleMessage(message));
+
         this.updateView();
     }
 
@@ -29,7 +32,16 @@ export class GraphicalGuiEditor {
     public updateView() {
         this.webview.html = this.getHtml('Title', this.document.getText(), this.webview, extensionUri);
     }
-    
+
+    private handleMessage(message: any) {
+        console.log(`** message ${JSON.stringify(message)} recieved **`);
+
+        // switch (message.command) {
+        //     case 'change' :
+        //         console.log(`** message 'change' reieved **`);
+        // }
+    }
+
     private getHtml(title: string, text: string, webview: vscode.Webview, extensionUri: vscode.Uri): string {
         const stylesUri = getUri(webview, ["gui", "build", "styles.css"]);
     
