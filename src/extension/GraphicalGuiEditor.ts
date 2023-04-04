@@ -30,16 +30,23 @@ export class GraphicalGuiEditor {
      * Synchronize the view with the contents of the document.
      */
     public updateView() {
-        this.webview.html = this.getHtml('Title', this.document.getText(), this.webview, extensionUri);
+        const text = this.document.getText();
+        this.webview.html = this.getHtml('Title', text, this.webview, extensionUri);
+
+        this.sendMessage({command: 'update', text: text});
     }
 
     private handleMessage(message: any) {
-        console.log(`** message ${JSON.stringify(message)} recieved **`);
+        console.log(`** Editor received message: ${JSON.stringify(message)} **`);
 
         // switch (message.command) {
         //     case 'change' :
         //         console.log(`** message 'change' reieved **`);
         // }
+    }
+
+    private sendMessage(message: any) {
+        this.webview.postMessage(message);
     }
 
     private getHtml(title: string, text: string, webview: vscode.Webview, extensionUri: vscode.Uri): string {
@@ -59,8 +66,6 @@ export class GraphicalGuiEditor {
                     <title>${title}</title>
                 </head>
                 <body>
-                    <p>${webview.cspSource}</p>
-                    <p><strong>${text}</strong><p>
                     <metap-root></metap-root>
                     <script type="module" src="${runtimeUri}"></script>
                     <script type="module" src="${polyfillsUri}"></script>
