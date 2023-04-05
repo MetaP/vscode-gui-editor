@@ -23,7 +23,7 @@ To debug, use the Developer Tools
 - Run `Developer: Open Webview Developer Tools`
 
 ## Extension Part
-- Bring up the `Run and Debug` activity via the `Run and Debug` icon in the `Acivity Bar`. Or use the shortcut `Crl+Shift+D` (See the [Debugging](https://code.visualstudio.com/docs/editor/debugging#_run-and-debug-view) VSCode Guide)
+- Bring up the `Run and Debug` activity via the `Run and Debug` icon in the `Acivity Bar` or use the shortcut `Crl+Shift+D`
 - Select `Run Extension` in the `Launch Configurations` dropdown menu
 - Press the `Start Debugging` button or `F5` key.
 
