@@ -29,6 +29,20 @@
 				"${workspaceFolder}/out/test/**/*.js"
 			],
 			"preLaunchTask": "${defaultBuildTask}"
+		},
+		{
+			"name": "Debug GUI (Chrome)",
+			"type": "chrome",
+			"request": "launch",
+			"webRoot": "${workspaceFolder}/gui",
+			"url": "http://localhost:4200/"
+		},
+		{
+			"name": "Debug GUI (Edge)",
+			"type": "msedge",
+			"request": "launch",
+			"webRoot": "${workspaceFolder}/gui",
+			"url": "http://localhost:4200/"
 		}
 	]
 }
