@@ -31,6 +31,9 @@
 			"preLaunchTask": "${defaultBuildTask}"
 		},
 		{
+			// Launch the GUI subproject in Chrome. 
+			// (Start that project before launch with: |> npm run start:gui)
+
 			"name": "Debug GUI (Chrome)",
 			"type": "chrome",
 			"request": "launch",
@@ -38,6 +41,9 @@
 			"url": "http://localhost:4200/"
 		},
 		{
+			// Launch the GUI subproject in Edge. 
+			// (Start that project before launch with: |> npm run start:gui)
+
 			"name": "Debug GUI (Edge)",
 			"type": "msedge",
 			"request": "launch",
