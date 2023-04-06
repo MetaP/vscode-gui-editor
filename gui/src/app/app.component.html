@@ -1,9 +1,7 @@
-<h1>MetaP GUI Editor</h1>
 <main>
     <div class="top-panel">
         <button (click)="onChangeClicked()">Change</button>
     </div>
     <div class="text-panel" innerHTML="{{text$ | async}}"></div>
-    <!-- <router-outlet></router-outlet> -->
-    <metap-demo></metap-demo>
+    <metap-model-canvas></metap-model-canvas>
 </main>

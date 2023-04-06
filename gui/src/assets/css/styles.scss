@@ -7,10 +7,10 @@ $metap-border-width: 1px;
 body {
     color: $metap-color-text;
     background-color: $metap-color-background;
-    main {
-        /* Top & bottom border */
-        border: solid $metap-color-border; 
-        border-width: $metap-border-width 0; 
-    }
+    // main {
+    //     /* Top & bottom border */
+    //     border: solid $metap-color-border; 
+    //     border-width: $metap-border-width 0; 
+    // }
 }
 
