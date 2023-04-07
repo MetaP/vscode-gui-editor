@@ -5,6 +5,7 @@ import { formatLineBreaks } from 'src/utilities/formatLineBreaks';
 import { vscode } from 'src/utilities/vscode';
 import { ModelElement } from '../../../src/model/ModelElement';
 import { ViewElement } from '../../../src/view/ViewElement';
+import { getView, simpleForm }  from '../../../src/test/test_dummies';
 
 @Component({
     selector: 'metap-root',
@@ -34,7 +35,7 @@ export class AppComponent {
     onChangeClicked() {
         vscode.postMessage({ command: 'change' });
 
-        this.test();
+        this.test2();
     }
 
     private test() {
@@ -53,5 +54,11 @@ export class AppComponent {
         };
 
         this.modelCanvas.show([viewElement]);
+    }
+
+    private test2() {
+        const model = simpleForm;
+        const view = getView(model);
+        this.modelCanvas.show([view]);
     }
 }

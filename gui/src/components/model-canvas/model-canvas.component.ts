@@ -20,6 +20,6 @@ export class ModelCanvasComponent implements OnInit {
     }
 
     show(viewElements: ViewElement[]) {
-        this.graphicsService.showElements(viewElements)
+        this.graphicsService.showElements(viewElements);
     }
 }

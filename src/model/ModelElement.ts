@@ -1,5 +1,8 @@
 export type ModelElementType = string;
 
 export interface ModelElement {
-    type: ModelElementType;
+    readonly type: ModelElementType;
+    name?: string;
+    class?: string;
+    children?: ModelElement[];
 }
